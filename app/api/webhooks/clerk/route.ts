@@ -35,6 +35,7 @@ type Event = {
 };
 
 export const POST = async (request: Request) => {
+  console.log("start request");
   const payload = await request.json();
   const header = headers();
 
@@ -58,6 +59,8 @@ export const POST = async (request: Request) => {
   } catch (err) {
     return NextResponse.json({ message: err }, { status: 400 });
   }
+
+  console.log("success validation");
 
   const eventType: EventType = evnt?.type!;
 
