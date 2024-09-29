@@ -18,6 +18,7 @@ import { Textarea } from "../ui/textarea";
 import { ThreadValidation } from "@/lib/validations/thread";
 import { createThread } from "@/lib/actions/thread.actions";
 import { usePathname, useRouter } from "next/navigation";
+import { useOrganization } from "@clerk/nextjs";
 
 interface Props {
   userId: string;
@@ -27,6 +28,7 @@ type ThreadSchema = z.infer<typeof ThreadValidation>;
 const PostThread = ({ userId }: Props) => {
   const pathname = usePathname();
   const router = useRouter();
+  const { organization } = useOrganization();
 
   const form = useForm<ThreadSchema>({
     resolver: zodResolver(ThreadValidation),
@@ -41,7 +43,7 @@ const PostThread = ({ userId }: Props) => {
       text: values.thread,
       author: userId,
       path: pathname,
-      communityId: null,
+      communityId: organization ? organization.id : null,
     });
 
     router.push("/");
