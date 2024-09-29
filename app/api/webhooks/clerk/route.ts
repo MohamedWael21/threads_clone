@@ -35,7 +35,6 @@ type Event = {
 };
 
 export const POST = async (request: Request) => {
-  console.log("start request");
   const payload = await request.json();
   const header = headers();
 
@@ -60,8 +59,6 @@ export const POST = async (request: Request) => {
     return NextResponse.json({ message: err }, { status: 400 });
   }
 
-  console.log("success validation");
-
   const eventType: EventType = evnt?.type!;
 
   // Listen organization creation event
@@ -83,8 +80,6 @@ export const POST = async (request: Request) => {
         created_by
       );
 
-      console.log("created");
-
       return NextResponse.json({ message: "User created" }, { status: 201 });
     } catch (err) {
       console.log(err);
@@ -94,8 +89,6 @@ export const POST = async (request: Request) => {
       );
     }
   }
-
-  console.log("shouldn't run");
 
   // Listen organization invitation creation event.
   // Just to show. You can avoid this or tell people that we can create a new mongoose action and
