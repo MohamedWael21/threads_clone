@@ -6,7 +6,7 @@ import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadate: Metadata = {
+export const metadata: Metadata = {
   title: "Threads",
   description: "A Next.js 13 Meta Threads Application",
 };
@@ -17,10 +17,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-dark-1`}>
-        <ClerkProvider>{children}</ClerkProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${inter.className} bg-dark-1`}>
+          <div className="w-full flex justify-center items-center min-h-screen">
+            {children}
+          </div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
