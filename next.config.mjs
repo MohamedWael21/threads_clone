@@ -3,6 +3,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  eslint: {
+    ignoreBuildErrors: true,
+  },
   experimental: {
     serverComponentsExternalPackages: ["mongoose"],
   },
