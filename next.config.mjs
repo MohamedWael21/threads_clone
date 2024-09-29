@@ -1,11 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreBuildErrors: true,
-  },
   experimental: {
     serverComponentsExternalPackages: ["mongoose"],
   },
@@ -15,6 +9,7 @@ const nextConfig = {
       { protocol: "https", hostname: "images.clerk.dev" },
       { protocol: "https", hostname: "uploadthing.com" },
       { protocol: "https", hostname: "placehold.co" },
+      { protocol: "https", hostname: "utfs.io" },
     ],
   },
 };

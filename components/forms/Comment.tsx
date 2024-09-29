@@ -35,12 +35,12 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
   });
 
   const onSubmit = async (values: CommentSchema) => {
-    await addCommentToThread({
-      commentText: values.thread,
-      threadId: threadId,
-      userId: JSON.parse(currentUserId),
-      path: pathname,
-    });
+    await addCommentToThread(
+      threadId,
+      values.thread,
+      JSON.parse(currentUserId),
+      pathname
+    );
 
     form.reset();
   };

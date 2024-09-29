@@ -25,6 +25,7 @@ import { useUploadThing } from "@/lib/uploadthing";
 import { updateUser } from "@/lib/actions/user.actions";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 interface Props {
   user: {
@@ -40,12 +41,14 @@ interface Props {
 
 type userSchema = z.infer<typeof userValidation>;
 
-const AccountProfile = ({ user }: Props) => {
+const AccountProfile = ({ user, btnTitle }: Props) => {
   const [files, setFiles] = useState<File[]>([]);
   const { startUpload } = useUploadThing("media");
 
   const pathname = usePathname();
   const router = useRouter();
+
+  const { user: clerkUser } = useUser();
 
   const form = useForm<userSchema>({
     resolver: zodResolver(userValidation),
@@ -100,6 +103,10 @@ const AccountProfile = ({ user }: Props) => {
       bio: values.bio,
       path: pathname,
       userId: user.id,
+    });
+
+    await clerkUser?.setProfileImage({
+      file: files[0],
     });
 
     if (pathname === "/profile/edit") {
@@ -218,7 +225,7 @@ const AccountProfile = ({ user }: Props) => {
           disabled={form.formState.isSubmitting}
           className="bg-primary-500"
         >
-          {form.formState.isSubmitting ? "Submitting..." : "submit"}
+          {form.formState.isSubmitting ? "Submitting..." : btnTitle}
         </Button>
       </form>
     </Form>

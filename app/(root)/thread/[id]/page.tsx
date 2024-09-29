@@ -21,7 +21,7 @@ export default async function page({ params }: { params: { id: string } }) {
       <div>
         <ThreadCard
           id={thread._id}
-          currentUser={user?.id || ""}
+          currentUserId={user?.id || ""}
           parentId={thread.parentID}
           author={thread.author}
           content={thread.text}
@@ -43,7 +43,7 @@ export default async function page({ params }: { params: { id: string } }) {
           <div className="" key={childItem._id}>
             <ThreadCard
               id={childItem._id}
-              currentUser={user?.id || ""}
+              currentUserId={user?.id || ""}
               parentId={childItem.parentID}
               author={childItem.author}
               content={childItem.text}
