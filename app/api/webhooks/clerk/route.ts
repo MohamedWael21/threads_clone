@@ -80,6 +80,8 @@ export const POST = async (request: Request) => {
         created_by
       );
 
+      console.log("created");
+
       return NextResponse.json({ message: "User created" }, { status: 201 });
     } catch (err) {
       console.log(err);
@@ -89,6 +91,8 @@ export const POST = async (request: Request) => {
       );
     }
   }
+
+  console.log("shouldn't run");
 
   // Listen organization invitation creation event.
   // Just to show. You can avoid this or tell people that we can create a new mongoose action and
