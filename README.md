@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧵 Threads Clone
 
-## Getting Started
+![Threads Clone Banner](./public/banner.png)
 
-First, run the development server:
+A full-stack Threads clone built with **Next.js 14**, **TypeScript**, **MongoDB**, and **Clerk**. This application replicates the core functionality of Meta's Threads, providing a seamless experience for creating, sharing, and interacting with short-form content.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
+
+-   **Authentication & Onboarding**: Secure user authentication via Clerk with a custom onboarding flow to set up user profiles.
+-   **Thread Management**:
+    -   Create, delete, and view threads.
+    -   Comment on threads with nested reply support.
+-   **Communities**:
+    -   Create and manage communities.
+    -   Invite members and assign roles.
+    -   Community-specific thread feeds.
+-   **User Profiles**: Customizable user profiles showcasing user activity, threads, and replies.
+-   **Search & Discovery**: Robust search functionality for finding users and communities.
+-   **Activity Feed**: Get notified of interactions like replies and new followers.
+-   **Responsive Design**: Fully responsive UI built with Tailwind CSS, optimized for mobile and desktop.
+-   **File Storage**: Seamless image uploads using UploadThing.
+
+## 🛠️ Tech Stack
+
+-   **Framework**: [Next.js 14 (App Router)](https://nextjs.org/)
+-   **Language**: [TypeScript](https://www.typescriptlang.org/)
+-   **Auth**: [Clerk](https://clerk.com/)
+-   **Database**: [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/)
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+-   **Components**: [Radix UI](https://www.radix-ui.com/) & [Shadcn UI](https://ui.shadcn.com/)
+-   **Forms**: [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/)
+-   **File Uploads**: [UploadThing](https://uploadthing.com/)
+
+## 🏁 Getting Started
+
+### Prerequisites
+
+-   Node.js 18.17 or later
+-   MongoDB Atlas account
+-   Clerk account
+-   UploadThing account
+
+### Installation
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/your-username/threads_clone.git
+    cd threads_clone
+    ```
+
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+
+3.  **Set up environment variables**:
+    Create a `.env.local` file in the root directory and add the following variables (refer to `.env.example`):
+    ```env
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+    CLERK_SECRET_KEY=
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/onboarding
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
+
+    MONGODB_URL=
+
+    UPLOADTHING_SECRET=
+    UPLOADTHING_APP_ID=
+    ```
+
+4.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+├── app/                  # Next.js App Router (pages & layouts)
+│   ├── (auth)/           # Authentication routes
+│   ├── (root)/           # Main application routes
+│   └── api/              # API routes & webhooks
+├── components/           # React components
+│   ├── cards/            # Thread and User cards
+│   ├── forms/            # Form components (Zod + Hook Form)
+│   ├── shared/           # Sidebar, Navbars, etc.
+│   └── ui/               # Base UI components
+├── lib/                  # Backend logic & utilities
+│   ├── actions/          # Server Actions (database operations)
+│   ├── models/           # Mongoose models
+│   └── validations/      # Zod validation schemas
+├── public/               # Static assets
+└── constants/            # Application constants
+```
 
-## Learn More
+## 📜 License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
